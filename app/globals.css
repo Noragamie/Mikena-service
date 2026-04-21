@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #002955;
+  --primary-container: #1d3f6e;
+  --secondary: #006c51;
+  --secondary-container: #91f2cd;
+  --surface: #faf9fd;
+  --on-surface: #1a1c1f;
+  --on-surface-variant: #43474f;
+  --surface-container-low: #f4f3f8;
+  --surface-container: #eeedf2;
+  --surface-container-high: #e8e7ec;
+  --surface-container-highest: #e3e2e6;
+  --outline-variant: #c3c6d0;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--surface);
+    color: var(--on-surface);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Manrope', sans-serif;
+  }
+}
+
+@layer utilities {
+  .architectural-grid {
+    background-image: radial-gradient(circle, #747780 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.05;
+  }
+
+  .blueprint-lines {
+    background-image: 
+      linear-gradient(rgba(0, 41, 85, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 41, 85, 0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .glass-nav {
+    background: rgba(250, 249, 253, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .glass-card {
+    background: rgba(250, 249, 253, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .text-gradient-primary {
+    background: linear-gradient(135deg, #002955 0%, #006c51 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-secondary {
+    background: linear-gradient(135deg, #006c51 0%, #91f2cd 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-hero {
+    background: linear-gradient(135deg, #002955 0%, #1d3f6e 60%, #002e20 100%);
+  }
+
+  .bg-gradient-cta {
+    background: linear-gradient(135deg, #002955 0%, #1d3f6e 100%);
+  }
+
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 30px 60px rgba(0, 41, 85, 0.12);
+  }
+
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .stagger-1 { transition-delay: 0.1s; }
+  .stagger-2 { transition-delay: 0.2s; }
+  .stagger-3 { transition-delay: 0.3s; }
+  .stagger-4 { transition-delay: 0.4s; }
+  .stagger-5 { transition-delay: 0.5s; }
+  .stagger-6 { transition-delay: 0.6s; }
+
+  .service-card-hover {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .service-card-hover:hover {
+    background: linear-gradient(135deg, #002955 0%, #1d3f6e 100%);
+    color: white;
+    transform: translateY(-6px);
+    box-shadow: 0 30px 60px rgba(0, 41, 85, 0.2);
+  }
+
+  .service-card-hover:hover .card-icon {
+    background: rgba(145, 242, 205, 0.2);
+    color: #91f2cd;
+  }
+
+  .service-card-hover:hover h3,
+  .service-card-hover:hover p {
+    color: white;
+  }
+
+  .service-card-hover:hover .card-link {
+    color: #91f2cd;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #002955 0%, #1d3f6e 100%);
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-primary:hover {
+    transform: scale(0.98);
+    box-shadow: 0 20px 40px rgba(0, 41, 85, 0.3);
+  }
+
+  .btn-primary:active {
+    transform: scale(0.96);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    border: 1px solid rgba(0, 41, 85, 0.2);
+    color: #002955;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(0, 41, 85, 0.05);
+    border-color: rgba(0, 41, 85, 0.4);
+  }
+
+  .section-label {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #006c51;
+  }
+
+  .number-counter {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 900;
+    background: linear-gradient(135deg, #002955 0%, #006c51 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Scrollbar customization */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--surface-container-low);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #002955, #006c51);
+    border-radius: 3px;
+  }
+}
+
+/* Page transitions */
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter {
+  animation: pageEnter 0.6s ease forwards;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Rotating border animation */
+@keyframes rotateBorder {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+/* Marquee for services */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Stats counter pulse */
+@keyframes statsPulse {
+  0% { opacity: 0; transform: scale(0.8); }
+  60% { transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.stats-enter {
+  animation: statsPulse 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}

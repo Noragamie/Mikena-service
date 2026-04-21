@@ -1,0 +1,10 @@
+# robots.txt pour Mikena Services
+User-agent: *
+Allow: /
+
+# Sitemap - sera automatiquement généré par Next.js
+# L'URL sera mise à jour automatiquement selon votre domaine
+Sitemap: /sitemap.xml
+
+# Disallow admin or private pages if any
+# Disallow: /admin/
