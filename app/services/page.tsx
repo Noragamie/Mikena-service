@@ -1,118 +1,22 @@
 import Link from 'next/link'
 import AnimatedSection from '@/components/AnimatedSection'
 import Image from 'next/image'
-import {
-  Monitor, Sun, Radio, GraduationCap, Leaf, Search,
-  ShoppingCart, Network, Wrench, Calendar, Wifi, Tractor,
-  ArrowRight, CheckCircle2
-} from 'lucide-react'
+import { services } from '@/lib/services'
+import { ArrowRight, ChevronRight, CheckCircle2 } from 'lucide-react'
 
 export const metadata = {
   title: 'Services — Mikena Services',
   description: 'Découvrez nos 12 domaines d\'expertise en ingénierie : informatique, solaire, fibre optique, formation et plus.',
 }
 
-const heroImages = [
-  'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1920&q=80',
-  'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1920&q=80',
-  'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1920&q=80',
-]
-
-const services = [
-  {
-    icon: Monitor,
-    title: 'Ingénierie Informatique',
-    description: 'Développement logiciel sur mesure, infrastructure cloud et stratégies d\'intégration adaptées à l\'industrie lourde et aux entreprises commerciales.',
-    highlights: ['Développement logiciel custom', 'Infrastructure cloud & réseau', 'Intégration systèmes enterprise', 'Cybersécurité & conformité'],
-    tag: 'IT & Digital',
-    featured: true,
-  },
-  {
-    icon: Sun,
-    title: 'Ingénierie Solaire & Électrique',
-    description: 'Conception de réseaux d\'énergie durable et installations électriques haute tension pour sites industriels modernes.',
-    highlights: ['Parcs solaires résidentiels & industriels', 'Installations haute tension', 'Systèmes de stockage d\'énergie', 'Audit & maintenance électrique'],
-    tag: 'Énergie Durable',
-    featured: true,
-  },
-  {
-    icon: Radio,
-    title: 'Ingénierie Fibre Optique',
-    description: 'Installation de backbone de données haute vitesse, splicing de précision et architecture réseau étendu pour connectivité maximale.',
-    highlights: ['Déploiement fibre FTTH/FTTB', 'Splicing & test de câbles', 'Architecture wide-area network', 'Maintenance infrastructure télécom'],
-    tag: 'Télécommunications',
-    featured: true,
-  },
-  {
-    icon: GraduationCap,
-    title: 'Formations Techniques',
-    description: 'Programmes de certification technique spécialisés et ateliers de sécurité pour les professionnels de l\'ingénierie.',
-    highlights: ['Certifications professionnelles', 'Ateliers sécurité chantier', 'Formation continue IT', 'Accompagnement sur mesure'],
-    tag: 'Formation',
-  },
-  {
-    icon: Leaf,
-    title: 'Gestion de l\'Environnement',
-    description: 'Conformité réglementaire et stratégies d\'utilisation durable des terres pour une ingénierie responsable.',
-    highlights: ['Études d\'impact environnemental', 'Conformité réglementaire', 'Gestion durable des ressources', 'Conseil en développement durable'],
-    tag: 'Environnement',
-  },
-  {
-    icon: Search,
-    title: 'Études & Audits Système d\'Information',
-    description: 'Évaluations complètes de vulnérabilité et contrôles d\'intégrité structurelle pour systèmes legacy et modernes.',
-    highlights: ['Audit de sécurité SI', 'Analyse de vulnérabilités', 'Tests de pénétration', 'Rapport de conformité ISO'],
-    tag: 'Sécurité & Audit',
-  },
-  {
-    icon: ShoppingCart,
-    title: 'Vente de Matériels Informatique',
-    description: 'Fourniture d\'outils d\'ingénierie IT de haute qualité, matériels informatiques et composants solaires spécialisés.',
-    highlights: ['Équipements réseau Cisco/HP', 'Serveurs & postes de travail', 'Panneaux solaires & batteries', 'Support et garantie inclus'],
-    tag: 'Commerce',
-  },
-  {
-    icon: Network,
-    title: 'Réseaux',
-    description: 'Architecture LAN/WAN d\'entreprise de qualité, déploiements mesh sécurisés et infrastructure sans fil optimisée.',
-    highlights: ['Réseaux d\'entreprise LAN/WAN', 'WiFi & mesh déploiements', 'SD-WAN & virtualisation réseau', 'Supervision & NOC'],
-    tag: 'Infrastructure',
-  },
-  {
-    icon: Wrench,
-    title: 'Maintenance',
-    description: 'Surveillance proactive des systèmes et support technique rapide pour les actifs mission-critiques de vos opérations.',
-    highlights: ['Contrats de maintenance préventive', 'Support 24/7 pour sites actifs', 'Remplacement de pièces critique', 'Rapports d\'état détaillés'],
-    tag: 'Maintenance',
-  },
-  {
-    icon: Calendar,
-    title: 'Évènementiels',
-    description: 'Gestion technique complète pour symposiums industriels, expositions et sommets d\'ingénierie d\'entreprise.',
-    highlights: ['Infrastructure technique événements', 'Systèmes A/V & diffusion', 'Réseaux temporaires événementiels', 'Support technique on-site'],
-    tag: 'Événements',
-  },
-  {
-    icon: Wifi,
-    title: 'Communication',
-    description: 'Conception et déploiement de canaux de communication interne unifiés pour optimiser votre organisation.',
-    highlights: ['Systèmes de communication unifiée', 'Téléphonie IP & VoIP', 'Vidéoconférence d\'entreprise', 'Messagerie & collaboration'],
-    tag: 'Communication',
-  },
-  {
-    icon: Tractor,
-    title: 'Domaine Agricole',
-    description: 'Agriculture intelligente, irrigation de précision automatisée et solutions d\'ingénierie agricole pour un rendement durable.',
-    highlights: ['Systèmes d\'irrigation intelligents', 'Capteurs IoT agricoles', 'Automatisation des cultures', 'Monitoring & data farming'],
-    tag: 'Agritech',
-  },
-]
+// Get unique tags for filtering
+const categories = Array.from(new Set(services.map(s => s.tag))).sort()
 
 export default function ServicesPage() {
   return (
     <>
       {/* Hero with Image */}
-      <section className="relative bg-gradient-hero pt-40 pb-28 overflow-hidden">
+      <section className="relative bg-gradient-hero pt-40 pb-32 overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
@@ -126,20 +30,18 @@ export default function ServicesPage() {
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
           <AnimatedSection>
             <span className="inline-block bg-secondary/20 text-secondary-container border border-secondary-container/20 rounded-full px-4 py-1.5 text-xs font-headline font-bold uppercase tracking-widest mb-6">
-              Notre Expertise
+              Notre Expertise Complète
             </span>
           </AnimatedSection>
           <AnimatedSection delay={100}>
-            <h1 className="text-5xl md:text-7xl font-headline font-black text-white leading-[1.05] tracking-tight mb-6">
-              Solutions de Précision<br />
-              pour l&apos;<span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary-container to-secondary">Infrastructure</span><br />
-              Moderne
+            <h1 className="text-5xl md:text-6xl font-headline font-black text-white leading-[1.1] tracking-tight mb-6">
+              12 Domaines d&apos;<span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary-container to-secondary">Excellence</span>
             </h1>
           </AnimatedSection>
           <AnimatedSection delay={200}>
             <p className="text-white/70 text-lg max-w-2xl leading-relaxed">
-              Déployant des services d&apos;ingénierie et IT de classe mondiale avec une précision architecturale. 
-              De la fibre optique à la gestion environnementale, nous construisons l&apos;avenir de l&apos;industrie.
+              De l'informatique à l'agriculture, découvrez comment nous transformons votre infrastructure 
+              avec des solutions innovantes et sur mesure.
             </p>
           </AnimatedSection>
         </div>
@@ -148,84 +50,151 @@ export default function ServicesPage() {
       {/* Services grid */}
       <section className="py-28 bg-surface">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
-          {/* Featured 3 */}
-          <AnimatedSection className="mb-6">
-            <span className="section-label mb-2 block">Services Phares</span>
-          </AnimatedSection>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-            {services.filter(s => s.featured).map((service, i) => (
-              <AnimatedSection key={i} delay={i * 100}>
-                <div className="service-card-hover bg-surface-container-lowest rounded-xl p-8 shadow-elevation-1 h-full flex flex-col">
-                  <div className="flex items-start justify-between mb-6">
-                    <div className="w-14 h-14 rounded-xl bg-primary/5 flex items-center justify-center card-icon transition-all duration-400">
-                      <service.icon className="w-7 h-7 text-primary transition-colors duration-400" />
-                    </div>
-                    <span className="text-xs font-headline font-bold uppercase tracking-widest text-secondary bg-secondary/10 px-3 py-1 rounded-full">
-                      {service.tag}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-headline font-bold text-primary mb-3 transition-colors duration-400">
-                    {service.title}
-                  </h3>
-                  <p className="text-on-surface-variant text-sm leading-relaxed mb-6 flex-1 transition-colors duration-400">
-                    {service.description}
+          {/* Services Phares - Premium Section */}
+          <div className="mb-20">
+            <AnimatedSection className="mb-12">
+              <div className="flex items-end justify-between mb-8">
+                <div>
+                  <h2 className="text-3xl md:text-4xl font-headline font-black text-primary mb-3">
+                    Services Phares
+                  </h2>
+                  <p className="text-on-surface-variant">
+                    Nos services les plus demandés et reconnus dans l'industrie
                   </p>
-                  <ul className="space-y-2 mb-6">
-                    {service.highlights.map((h, j) => (
-                      <li key={j} className="flex items-center gap-2 text-sm text-on-surface-variant transition-colors duration-400">
-                        <CheckCircle2 className="w-4 h-4 text-secondary shrink-0 transition-colors duration-400" />
-                        {h}
-                      </li>
-                    ))}
-                  </ul>
                 </div>
-              </AnimatedSection>
-            ))}
+              </div>
+            </AnimatedSection>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {services.filter(s => s.featured).map((service, i) => (
+                <AnimatedSection key={i} delay={i * 100}>
+                  <Link href={`/services/${service.slug}`}>
+                    <div className="group relative h-full">
+                      {/* Card Background Gradient */}
+                      <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-secondary to-primary-container rounded-2xl opacity-0 group-hover:opacity-10 transition duration-500 blur-lg" />
+                      
+                      <div className="relative bg-surface-container-lowest border border-outline-variant/20 rounded-2xl p-10 h-full flex flex-col transition-all duration-500 group-hover:border-secondary/40 group-hover:shadow-elevation-4 group-hover:shadow-secondary/10">
+                        {/* Icon & Tag */}
+                        <div className="flex items-start justify-between mb-8">
+                          <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center group-hover:from-secondary/10 group-hover:to-secondary/5 transition duration-300">
+                            <service.icon className="w-8 h-8 text-primary group-hover:text-secondary transition duration-300" />
+                          </div>
+                          <span className="text-xs font-headline font-bold uppercase tracking-widest text-secondary bg-secondary/10 px-3 py-1 rounded-full">
+                            {service.tag}
+                          </span>
+                        </div>
+
+                        {/* Content */}
+                        <h3 className="text-2xl font-headline font-black text-primary mb-4 group-hover:text-secondary transition duration-300 line-clamp-2">
+                          {service.title}
+                        </h3>
+                        <p className="text-on-surface-variant text-sm leading-relaxed mb-8 flex-1 line-clamp-3">
+                          {service.description}
+                        </p>
+
+                        {/* Highlights */}
+                        {service.highlights && (
+                          <div className="mb-8 space-y-3">
+                            {service.highlights.slice(0, 3).map((h, j) => (
+                              <div key={j} className="flex items-start gap-3">
+                                <CheckCircle2 className="w-4 h-4 text-secondary shrink-0 mt-0.5" />
+                                <span className="text-xs text-on-surface-variant leading-snug">{h}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
+                        {/* CTA Button */}
+                        <div className="flex items-center gap-2 text-secondary font-headline font-bold text-sm group-hover:gap-3 transition-all duration-300">
+                          Découvrir ce service
+                          <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </AnimatedSection>
+              ))}
+            </div>
           </div>
 
-          {/* Rest */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.filter(s => !s.featured).map((service, i) => (
-              <AnimatedSection key={i} delay={i * 80}>
-                <div className="service-card-hover bg-surface-container-lowest rounded-xl p-6 shadow-elevation-1 h-full flex flex-col">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-10 h-10 rounded-lg bg-primary/5 flex items-center justify-center card-icon transition-all duration-400">
-                      <service.icon className="w-5 h-5 text-primary transition-colors duration-400" />
+          {/* All Services - Organized by Category */}
+          <div>
+            <AnimatedSection className="mb-12">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-headline font-black text-primary mb-3">
+                  Tous nos services
+                </h2>
+                <p className="text-on-surface-variant">
+                  Explorez notre portefeuille complet de {services.length} solutions d'ingénierie
+                </p>
+              </div>
+            </AnimatedSection>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {services.filter(s => !s.featured).map((service, i) => (
+                <AnimatedSection key={i} delay={(i % 9) * 50}>
+                  <Link href={`/services/${service.slug}`}>
+                    <div className="group h-full">
+                      <div className="bg-surface-container-lowest border border-outline-variant/20 rounded-xl p-7 h-full flex flex-col transition-all duration-400 group-hover:border-secondary/30 group-hover:shadow-elevation-3 group-hover:shadow-secondary/5">
+                        {/* Header */}
+                        <div className="flex items-start justify-between gap-4 mb-6">
+                          <div className="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center group-hover:bg-secondary/5 transition duration-300">
+                            <service.icon className="w-6 h-6 text-primary group-hover:text-secondary transition duration-300" />
+                          </div>
+                          <span className="text-xs font-headline font-bold uppercase tracking-widest text-on-surface-variant px-2 py-1 rounded-md bg-surface-container">
+                            {service.tag}
+                          </span>
+                        </div>
+
+                        {/* Content */}
+                        <h3 className="text-lg font-headline font-bold text-primary mb-3 group-hover:text-secondary transition duration-300 leading-snug">
+                          {service.title}
+                        </h3>
+                        <p className="text-on-surface-variant text-sm leading-relaxed mb-6 flex-1">
+                          {service.description}
+                        </p>
+
+                        {/* Footer with Arrow */}
+                        <div className="flex items-center gap-2 text-secondary font-headline font-bold text-xs uppercase tracking-wider group-hover:gap-3 transition-all duration-300">
+                          En savoir plus
+                          <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" />
+                        </div>
+                      </div>
                     </div>
-                    <span className="text-xs font-headline font-bold uppercase tracking-widest text-on-surface-variant">
-                      {service.tag}
-                    </span>
-                  </div>
-                  <h3 className="text-lg font-headline font-bold text-primary mb-2 transition-colors duration-400">
-                    {service.title}
-                  </h3>
-                  <p className="text-on-surface-variant text-sm leading-relaxed flex-1 transition-colors duration-400">
-                    {service.description}
-                  </p>
-                </div>
-              </AnimatedSection>
-            ))}
+                  </Link>
+                </AnimatedSection>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 bg-surface-container-low border-t border-outline-variant/20">
-        <div className="max-w-4xl mx-auto px-6 md:px-12 text-center">
+      {/* CTA Section */}
+      <section className="py-28 bg-gradient-to-r from-primary to-primary-container relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 architectural-grid" />
+        </div>
+
+        <div className="relative z-10 max-w-4xl mx-auto px-6 md:px-12 text-center">
           <AnimatedSection>
-            <div className="inline-flex items-center gap-2 bg-secondary/10 text-secondary px-4 py-2 rounded-full text-sm font-headline font-bold uppercase tracking-wider mb-6">
-              Devis Gratuit
-            </div>
-            <h2 className="text-4xl md:text-5xl font-headline font-black text-primary mb-4">
-              Prêt à Démarrer Votre Projet ?
+            <h2 className="text-4xl md:text-5xl font-headline font-black text-white mb-6">
+              Vous avez un projet en tête ?
             </h2>
-            <p className="text-on-surface-variant text-lg mb-8">
-              Contactez nos ingénieurs pour une consultation personnalisée et un devis sur mesure.
+            <p className="text-white/80 text-lg mb-10 max-w-2xl mx-auto">
+              Nos ingénieurs expérimentés sont prêts à vous aider à transformer votre vision en réalité. 
+              Contactez-nous pour une consultation personnalisée.
             </p>
-            <Link href="/contact" className="btn-primary">
-              Demander un Devis Gratuit
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact" className="btn-primary bg-white text-primary hover:bg-white/90 shadow-lg">
+                Demander un Devis Gratuit
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link href="/#expertise" className="btn-secondary border-white text-white hover:bg-white/10">
+                En savoir plus
+                <ChevronRight className="w-4 h-4" />
+              </Link>
+            </div>
           </AnimatedSection>
         </div>
       </section>

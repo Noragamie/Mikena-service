@@ -2,98 +2,13 @@ import Link from 'next/link'
 import AnimatedSection from '@/components/AnimatedSection'
 import Counter from '@/components/Counter'
 import HeroCarousel from '@/components/HeroCarousel'
+import PartnerLogo from '@/components/PartnerLogo'
+import { getFirstSixServices, services } from '@/lib/services'
 import {
-  Monitor, Sun, Radio, GraduationCap, Leaf, Search,
-  ShoppingCart, Network, Wrench, Calendar, Wifi, Tractor,
   ArrowRight, ChevronRight, Shield, Zap, Globe2, Award
 } from 'lucide-react'
 
-const services = [
-  {
-    icon: Monitor,
-    title: 'Ingénierie Informatique',
-    description: 'Développement logiciel, infrastructure cloud et stratégies d\'intégration pour l\'industrie lourde.',
-    color: 'bg-blue-50',
-    iconColor: 'text-primary',
-  },
-  {
-    icon: Sun,
-    title: 'Ingénierie Solaire & Électrique',
-    description: 'Conception de réseaux d\'énergie durable et installations électriques haute tension.',
-    color: 'bg-emerald-50',
-    iconColor: 'text-secondary',
-  },
-  {
-    icon: Radio,
-    title: 'Fibre Optique',
-    description: 'Installation de backbone de données haute vitesse et architecture réseau étendu.',
-    color: 'bg-slate-50',
-    iconColor: 'text-primary',
-  },
-  {
-    icon: GraduationCap,
-    title: 'Formations',
-    description: 'Programmes de certification technique et ateliers de sécurité pour ingénieurs.',
-    color: 'bg-blue-50',
-    iconColor: 'text-primary',
-  },
-  {
-    icon: Leaf,
-    title: 'Gestion de l\'Environnement',
-    description: 'Conformité réglementaire et stratégies d\'utilisation durable des terres.',
-    color: 'bg-emerald-50',
-    iconColor: 'text-secondary',
-  },
-  {
-    icon: Search,
-    title: 'Études & Audits SI',
-    description: 'Évaluations de vulnérabilité et contrôles d\'intégrité structurelle pour systèmes legacy.',
-    color: 'bg-slate-50',
-    iconColor: 'text-primary',
-  },
-  {
-    icon: ShoppingCart,
-    title: 'Vente de Matériels',
-    description: 'Fourniture d\'outils d\'ingénierie IT, matériels et composants solaires spécialisés.',
-    color: 'bg-blue-50',
-    iconColor: 'text-primary',
-  },
-  {
-    icon: Network,
-    title: 'Réseaux',
-    description: 'Architecture LAN/WAN d\'entreprise, déploiements mesh et infrastructure sans fil.',
-    color: 'bg-emerald-50',
-    iconColor: 'text-secondary',
-  },
-  {
-    icon: Wrench,
-    title: 'Maintenance',
-    description: 'Surveillance proactive et support technique rapide pour actifs mission-critiques.',
-    color: 'bg-slate-50',
-    iconColor: 'text-primary',
-  },
-  {
-    icon: Calendar,
-    title: 'Évènementiels',
-    description: 'Gestion technique pour symposiums industriels et sommets d\'ingénierie d\'entreprise.',
-    color: 'bg-blue-50',
-    iconColor: 'text-primary',
-  },
-  {
-    icon: Wifi,
-    title: 'Communication',
-    description: 'Conception et déploiement de canaux de communication interne unifiés.',
-    color: 'bg-emerald-50',
-    iconColor: 'text-secondary',
-  },
-  {
-    icon: Tractor,
-    title: 'Domaine Agricole',
-    description: 'Agriculture intelligente, irrigation automatisée et solutions d\'ingénierie agricole.',
-    color: 'bg-slate-50',
-    iconColor: 'text-secondary',
-  },
-]
+const displayedServices = getFirstSixServices()
 
 const stats = [
   { value: 6, suffix: '+', label: 'Années d\'Expérience' },
@@ -157,28 +72,42 @@ export default function HomePage() {
               <span className="text-gradient-primary">l&apos;Infrastructure Moderne</span>
             </h2>
             <p className="text-on-surface-variant text-lg max-w-2xl mx-auto">
-              Déploiement de services d&apos;ingénierie et IT de classe mondiale avec une précision architecturale. 
+              Déploiement de services d&apos;ingénierie et IT de classe mondiale avec une précision architecturale.
               De la fibre optique à la gestion environnementale.
             </p>
           </AnimatedSection>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service, i) => (
+            {displayedServices.map((service, i) => (
               <AnimatedSection key={i} delay={i * 60}>
-                <div className="service-card-hover bg-surface-container-lowest rounded-xl p-8 shadow-elevation-1 cursor-pointer h-full">
-                  <div className={`card-icon w-12 h-12 rounded-lg ${service.color} flex items-center justify-center mb-6 transition-all duration-400`}>
-                    <service.icon className={`w-6 h-6 ${service.iconColor} transition-colors duration-400`} />
+                <Link href={`/services/${service.slug}`}>
+                  <div className="service-card-hover bg-surface-container-lowest rounded-xl p-8 shadow-elevation-1 cursor-pointer h-full transition-all duration-300 hover:shadow-elevation-4 hover:-translate-y-1">
+                    <div className={`card-icon w-12 h-12 rounded-lg ${service.color} flex items-center justify-center mb-6 transition-all duration-400`}>
+                      <service.icon className={`w-6 h-6 ${service.iconColor} transition-colors duration-400`} />
+                    </div>
+                    <h3 className="text-xl font-headline font-bold text-primary mb-3 transition-colors duration-400">
+                      {service.title}
+                    </h3>
+                    <p className="text-on-surface-variant text-sm leading-relaxed mb-6 transition-colors duration-400">
+                      {service.description}
+                    </p>
+                    <div className="flex items-center text-secondary font-headline font-bold text-sm">
+                      En savoir plus
+                      <ChevronRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                    </div>
                   </div>
-                  <h3 className="text-xl font-headline font-bold text-primary mb-3 transition-colors duration-400">
-                    {service.title}
-                  </h3>
-                  <p className="text-on-surface-variant text-sm leading-relaxed mb-6 transition-colors duration-400">
-                    {service.description}
-                  </p>
-                </div>
+                </Link>
               </AnimatedSection>
             ))}
           </div>
+
+          {/* En savoir plus button */}
+          <AnimatedSection className="text-center mt-16">
+            <Link href="/services" className="btn-primary bg-secondary hover:bg-secondary/80">
+              Découvrir tous nos services
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </AnimatedSection>
         </div>
       </section>
 
@@ -253,6 +182,102 @@ export default function HomePage() {
                 </div>
               </AnimatedSection>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ PARTNERS SECTION ============ */}
+      <section className="py-28 bg-surface">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <AnimatedSection className="text-center mb-20">
+            <span className="section-label mb-4 block">Nos Partenaires</span>
+            <h2 className="text-4xl md:text-5xl font-headline font-black text-primary mb-6">
+              Partenaires de Confiance<br />
+              <span className="text-gradient-primary">pour l&apos;Excellence</span>
+            </h2>
+            <p className="text-on-surface-variant text-lg max-w-2xl mx-auto">
+              Nous collaborons avec les leaders technologiques mondiaux pour vous offrir les meilleures solutions d'ingénierie.
+            </p>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {[
+              { 
+                name: 'Cisco Systems', 
+                description: 'Solutions réseau et sécurité',
+                logo: 'https://www.cisco.com/favicon.ico',
+                initials: 'CS'
+              },
+              { 
+                name: 'Microsoft Azure', 
+                description: 'Infrastructure cloud',
+                logo: 'https://www.microsoft.com/favicon.ico',
+                initials: 'MA'
+              },
+              { 
+                name: 'Huawei', 
+                description: 'Télécommunications',
+                logo: 'https://www.huawei.com/favicon.ico',
+                initials: 'HW'
+              },
+              { 
+                name: 'SunPower', 
+                description: 'Énergie solaire',
+                logo: 'https://www.sunpower.com/favicon.ico',
+                initials: 'SP'
+              },
+              { 
+                name: 'Dell Technologies', 
+                description: 'Serveurs et infrastructure IT',
+                logo: 'https://www.dell.com/favicon.ico',
+                initials: 'DT'
+              },
+              { 
+                name: 'Amazon Web Services', 
+                description: 'Services cloud',
+                logo: 'https://aws.amazon.com/favicon.ico',
+                initials: 'AWS'
+              },
+              { 
+                name: 'Siemens', 
+                description: 'Automatisation industrielle',
+                logo: 'https://www.siemens.com/favicon.ico',
+                initials: 'SM'
+              },
+              { 
+                name: 'Schneider Electric', 
+                description: 'Solutions d\'énergie',
+                logo: 'https://www.se.com/favicon.ico',
+                initials: 'SE'
+              },
+            ].map((partner, i) => (
+              <AnimatedSection key={i} delay={i * 60}>
+                <div className="group h-40 rounded-2xl overflow-hidden bg-surface-container-lowest border border-outline-variant/20 shadow-elevation-1 hover:shadow-elevation-3 transition-all duration-300 hover:border-secondary/30 hover:bg-gradient-to-br hover:from-primary/5 hover:to-secondary/5 flex flex-col items-center justify-center p-6 relative">
+                  {/* Animated background gradient on hover */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-gradient-to-r from-primary via-secondary to-primary transition-opacity duration-300" />
+                  
+                  {/* Content */}
+                  <div className="relative z-10 text-center w-full flex flex-col items-center justify-center">
+                    {/* Logo Container */}
+                    <div className="h-14 mb-3 flex items-center justify-center">
+                      <PartnerLogo 
+                        src={partner.logo} 
+                        alt={partner.name}
+                        initials={partner.initials}
+                      />
+                    </div>
+                    
+                    {/* Description */}
+                    <p className="text-xs text-on-surface-variant/70 group-hover:text-on-surface-variant transition-colors duration-300 line-clamp-2">
+                      {partner.description}
+                    </p>
+                  </div>
+
+                  {/* Corner accent */}
+                  <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-secondary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </section>
