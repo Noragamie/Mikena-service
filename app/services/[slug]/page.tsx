@@ -112,6 +112,204 @@ export default function ServiceDetailPage({ params }: Props) {
         </section>
       )}
 
+      {/* ============ ÉTUDES ============ */}
+      {service.etudes && service.etudes.length > 0 && (
+        <section className="py-20 bg-surface-container-low">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+            <AnimatedSection className="mb-12">
+              <h2 className="text-3xl font-headline font-bold text-primary mb-2">
+                ÉTUDES
+              </h2>
+              <p className="text-on-surface-variant">
+                Plans et stratégies pour vos systèmes d'information
+              </p>
+            </AnimatedSection>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {service.etudes.map((etude, i) => (
+                <AnimatedSection key={i} delay={i * 100}>
+                  <div className="bg-surface-container-lowest rounded-xl p-6 shadow-elevation-1 hover:shadow-elevation-4 transition-all duration-300">
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 rounded-lg bg-secondary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                        <ChevronRight className="w-5 h-5 text-secondary" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-headline font-bold text-primary mb-2">
+                          {etude}
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+                </AnimatedSection>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ============ AUDITS ============ */}
+      {service.audits && service.audits.length > 0 && (
+        <section className="py-20 bg-surface">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+            <AnimatedSection className="mb-12">
+              <h2 className="text-3xl font-headline font-bold text-primary mb-2">
+                AUDITS
+              </h2>
+              <p className="text-on-surface-variant">
+                Évaluations et contrôles de vos infrastructures
+              </p>
+            </AnimatedSection>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {service.audits.map((audit, i) => (
+                <AnimatedSection key={i} delay={i * 100}>
+                  <div className="bg-surface-container-lowest rounded-xl p-6 shadow-elevation-1 hover:shadow-elevation-4 transition-all duration-300">
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 rounded-lg bg-secondary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                        <ChevronRight className="w-5 h-5 text-secondary" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-headline font-bold text-primary mb-2">
+                          {audit}
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+                </AnimatedSection>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ============ MATÉRIELS INFORMATIQUES ============ */}
+      {service.materielsInformatiques && service.materielsInformatiques.length > 0 && (
+        <section className="py-20 bg-surface-container-low">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+            <AnimatedSection className="mb-12">
+              <h2 className="text-3xl font-headline font-bold text-primary mb-2">
+                Matériels Informatiques
+              </h2>
+            </AnimatedSection>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {service.materielsInformatiques.map((item, i) => (
+                <AnimatedSection key={i} delay={i * 50}>
+                  <div className="bg-surface-container-lowest rounded-lg p-4 shadow-elevation-1 hover:shadow-elevation-3 transition-all duration-300">
+                    <div className="flex items-center gap-3">
+                      <ChevronRight className="w-4 h-4 text-secondary flex-shrink-0" />
+                      <p className="text-sm text-primary font-medium">{item}</p>
+                    </div>
+                  </div>
+                </AnimatedSection>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ============ PIÈCES DE RECHANGE ============ */}
+      {service.piecesRechange && service.piecesRechange.length > 0 && (
+        <section className="py-20 bg-surface">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+            <AnimatedSection className="mb-12">
+              <h2 className="text-3xl font-headline font-bold text-primary mb-2">
+                Pieces de rechange informatique et consommables informatiques
+              </h2>
+            </AnimatedSection>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {service.piecesRechange.map((item, i) => (
+                <AnimatedSection key={i} delay={i * 50}>
+                  <div className="bg-surface-container-lowest rounded-lg p-4 shadow-elevation-1 hover:shadow-elevation-3 transition-all duration-300">
+                    <div className="flex items-center gap-3">
+                      <ChevronRight className="w-4 h-4 text-secondary flex-shrink-0" />
+                      <p className="text-sm text-primary font-medium">{item}</p>
+                    </div>
+                  </div>
+                </AnimatedSection>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ============ MATÉRIELS RÉSEAUX ============ */}
+      {service.materielsReseaux && service.materielsReseaux.length > 0 && (
+        <section className="py-20 bg-surface-container-low">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+            <AnimatedSection className="mb-12">
+              <h2 className="text-3xl font-headline font-bold text-primary mb-2">
+                Matériels Réseaux
+              </h2>
+            </AnimatedSection>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {service.materielsReseaux.map((item, i) => (
+                <AnimatedSection key={i} delay={i * 50}>
+                  <div className="bg-surface-container-lowest rounded-lg p-4 shadow-elevation-1 hover:shadow-elevation-3 transition-all duration-300">
+                    <div className="flex items-start gap-3">
+                      <ChevronRight className="w-4 h-4 text-secondary flex-shrink-0 mt-1" />
+                      <p className="text-sm text-primary font-medium">{item}</p>
+                    </div>
+                  </div>
+                </AnimatedSection>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ============ FIBRE OPTIQUE ============ */}
+      {service.fibreOptique && service.fibreOptique.length > 0 && (
+        <section className="py-20 bg-surface">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+            <AnimatedSection className="mb-12">
+              <h2 className="text-3xl font-headline font-bold text-primary mb-2">
+                FIBRE OPTIQUE
+              </h2>
+            </AnimatedSection>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {service.fibreOptique.map((item, i) => (
+                <AnimatedSection key={i} delay={i * 50}>
+                  <div className="bg-surface-container-lowest rounded-lg p-4 shadow-elevation-1 hover:shadow-elevation-3 transition-all duration-300">
+                    <div className="flex items-start gap-3">
+                      <ChevronRight className="w-4 h-4 text-secondary flex-shrink-0 mt-1" />
+                      <p className="text-sm text-primary font-medium">{item}</p>
+                    </div>
+                  </div>
+                </AnimatedSection>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ============ LICENCES ============ */}
+      {service.licences && service.licences.length > 0 && (
+        <section className="py-20 bg-surface-container-low">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+            <AnimatedSection className="mb-12">
+              <h2 className="text-3xl font-headline font-bold text-primary mb-2">
+                LES LICENCES
+              </h2>
+              <p className="text-on-surface-variant">
+                Nous offrons :
+              </p>
+            </AnimatedSection>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {service.licences.map((item, i) => (
+                <AnimatedSection key={i} delay={i * 50}>
+                  <div className="bg-surface-container-lowest rounded-lg p-4 shadow-elevation-1 hover:shadow-elevation-3 transition-all duration-300">
+                    <div className="flex items-center gap-3">
+                      <ChevronRight className="w-4 h-4 text-secondary flex-shrink-0" />
+                      <p className="text-sm text-primary font-medium">{item}</p>
+                    </div>
+                  </div>
+                </AnimatedSection>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ============ CTA SECTION ============ */}
       <section className="py-20 bg-surface">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
