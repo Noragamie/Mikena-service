@@ -39,7 +39,7 @@ const expertiseAreas = [
 ]
 
 const stats = [
-  { value: 50, suffix: '+', label: 'Projets Réussis', icon: Briefcase },
+  { value: 10, suffix: '+', label: 'Projets Réussis', icon: Briefcase },
   { value: 25, suffix: '+', label: 'Experts Certifiés', icon: Users },
   { value: 6, suffix: '+', label: 'Années d\'Expérience', icon: TrendingUp },
   { value: 99, suffix: '.9%', label: 'Taux de Satisfaction', icon: Award },
@@ -53,7 +53,7 @@ export default function ExpertisePage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&q=80"
+            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&q=80"
             alt="Expertise"
             className="w-full h-full object-cover"
           />

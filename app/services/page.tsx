@@ -20,7 +20,7 @@ export default function ServicesPage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1920&q=80"
+            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80"
             alt="Services"
             className="w-full h-full object-cover"
           />
@@ -170,27 +170,27 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-28 bg-gradient-to-r from-primary to-primary-container relative overflow-hidden">
+      <section className="py-28 bg-white relative overflow-hidden border-t border-outline-variant/20">
         {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0 architectural-grid" />
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 md:px-12 text-center">
           <AnimatedSection>
-            <h2 className="text-4xl md:text-5xl font-headline font-black text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-headline font-black text-primary mb-6">
               Vous avez un projet en tête ?
             </h2>
-            <p className="text-white/80 text-lg mb-10 max-w-2xl mx-auto">
+            <p className="text-on-surface-variant text-lg mb-10 max-w-2xl mx-auto">
               Nos ingénieurs expérimentés sont prêts à vous aider à transformer votre vision en réalité. 
               Contactez-nous pour une consultation personnalisée.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact" className="btn-primary bg-white text-primary hover:bg-white/90 shadow-lg">
+              <Link href="/contact" className="btn-primary bg-secondary hover:bg-secondary/80">
                 Demander un Devis Gratuit
                 <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link href="/#expertise" className="btn-secondary border-white text-white hover:bg-white/10">
+              <Link href="/#expertise" className="btn-secondary border-outline-variant text-primary hover:bg-surface-container">
                 En savoir plus
                 <ChevronRight className="w-4 h-4" />
               </Link>

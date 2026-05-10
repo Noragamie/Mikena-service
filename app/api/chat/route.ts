@@ -46,7 +46,7 @@ Notre équipe est disponible pour répondre à toutes vos questions !`,
 ✅ Études de dimensionnement
 ✅ Maintenance et suivi
 
-Nous avons réalisé plus de 50 projets avec succès. Contactez-nous pour un devis : +229 01 97 84 30 72`,
+Nous avons réalisé plus de 10 projets avec succès. Contactez-nous pour un devis : +229 01 97 84 30 72`,
     suggestions: ['Services informatiques', 'Fibre optique', 'Demander un devis']
   },
   
@@ -96,7 +96,7 @@ Demandez notre catalogue de formations : +229 01 97 84 30 72`,
 
 ✅ Fondée en 2020 au Bénin
 ✅ 25+ experts qualifiés
-✅ 50+ projets réalisés avec succès
+✅ 10+ projets réalisés avec succès
 ✅ 6+ ans d'expérience
 ✅ Basée à Cotonou
 

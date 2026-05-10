@@ -59,7 +59,7 @@ export default function ProjectsPage() {
       <section className="relative bg-gradient-hero pt-40 pb-28 overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80"
+            src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1920&q=80"
             alt="Projets"
             className="w-full h-full object-cover"
           />
@@ -76,7 +76,7 @@ export default function ProjectsPage() {
             <h1 className="text-5xl md:text-7xl font-headline font-black text-white leading-[1.05] tracking-tight mb-6">
               6 Ans d&apos;Expertise<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary-container to-secondary italic">
-                50+ Projets Réalisés
+                10+ Projets Réalisés
               </span>
             </h1>
           </AnimatedSection>
@@ -110,185 +110,61 @@ export default function ProjectsPage() {
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="mb-16">
             <AnimatedSection direction="left">
-              <span className="section-label mb-4 block">Projets Phares</span>
+              <span className="section-label mb-4 block">Nos Réalisations</span>
               <h2 className="text-4xl font-headline font-black text-primary">
-                Réalisations Majeures
+                Projets Réalisés
               </h2>
             </AnimatedSection>
           </div>
 
-          {/* Featured projects - 3 column grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
-            {featuredProjects.map((project, index) => {
-              const Icon = categoryIcons[project.category as keyof typeof categoryIcons]
+          {/* All projects - stylized cards grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project, index) => {
+              const IconComponent = project.icon
               return (
-                <AnimatedSection key={project.id} delay={index * 100}>
-                  <Link href={`/projects/${project.slug}`}>
-                    <div className="relative rounded-2xl overflow-hidden group cursor-pointer h-96 flex flex-col">
-                      {/* Background Image */}
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
-
-                      {/* Content */}
-                      <div className="relative z-10 p-6 flex flex-col justify-between h-full">
-                        {/* Top */}
-                        <div className="flex items-start justify-between">
-                          <div className="flex items-center gap-3 bg-secondary/20 backdrop-blur px-3 py-1.5 rounded-full w-fit">
-                            <Icon className="w-4 h-4 text-secondary-container" />
-                            <span className="text-secondary-container text-xs font-headline font-bold uppercase tracking-widest">
-                              {project.category}
-                            </span>
-                          </div>
-                          <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center group-hover:bg-secondary/30 transition-colors">
-                            <ArrowUpRight className="w-5 h-5 text-secondary-container" />
-                          </div>
+                <AnimatedSection key={project.id} delay={index * 50}>
+                  <div className="group relative bg-gradient-to-br from-white to-surface-container-low rounded-3xl overflow-hidden border border-outline-variant/20 hover:border-secondary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-secondary/10 hover:-translate-y-2 cursor-pointer h-full">
+                    {/* Animated gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-secondary/0 via-secondary/0 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    
+                    {/* Corner accent */}
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-secondary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-16 -translate-y-16 group-hover:translate-x-0 group-hover:translate-y-0" />
+                    
+                    {/* Content */}
+                    <div className="relative z-10 p-8 h-full flex flex-col">
+                      {/* Icon with animated background */}
+                      <div className="relative mb-6">
+                        <div className="absolute inset-0 bg-secondary/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-secondary/10 to-secondary/5 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 border border-secondary/10 group-hover:border-secondary/30">
+                          <IconComponent className="w-8 h-8 text-secondary group-hover:scale-110 transition-transform duration-500" />
                         </div>
-
-                        {/* Bottom */}
-                        <div>
-                          <h3 className="text-xl font-headline font-black text-white mb-2 line-clamp-2">
-                            {project.title}
-                          </h3>
-                          <p className="text-white/60 text-sm line-clamp-2">{project.description}</p>
-
-                          {/* Stats */}
-                          <div className="flex gap-4 mt-4 pt-4 border-t border-white/10">
-                            {project.highlights.slice(0, 2).map((h, i) => (
-                              <div key={i} className="flex flex-col">
-                                <span className="text-secondary text-sm font-headline font-bold">{h.value}</span>
-                                <span className="text-white/50 text-xs">{h.label}</span>
-                              </div>
-                            ))}
-                          </div>
+                      </div>
+                      
+                      {/* Title */}
+                      <h3 className="text-lg font-headline font-bold text-primary group-hover:text-secondary transition-colors duration-300 leading-tight mb-4 flex-grow">
+                        {project.title}
+                      </h3>
+                      
+                      {/* Category badge */}
+                      <div className="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/10 group-hover:border-secondary/20 transition-colors duration-300">
+                        <span className="text-xs font-headline font-bold text-on-surface-variant/60 uppercase tracking-wider">
+                          {project.category}
+                        </span>
+                        <div className="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center group-hover:bg-secondary group-hover:scale-110 transition-all duration-300">
+                          <ArrowUpRight className="w-4 h-4 text-secondary group-hover:text-white transition-colors duration-300" />
                         </div>
                       </div>
                     </div>
-                  </Link>
+                    
+                    {/* Animated border effect */}
+                    <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                      <div className="absolute inset-0 rounded-3xl border-2 border-secondary/20 animate-pulse" />
+                    </div>
+                  </div>
                 </AnimatedSection>
               )
             })}
           </div>
-        </div>
-      </section>
-
-      {/* Projects by Category */}
-      <section className="py-28 bg-surface-container-low">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          {categories.map((category, categoryIndex) => {
-            const categoryProjects = getProjectsByCategory(category)
-            const Icon = categoryIcons[category as keyof typeof categoryIcons]
-
-            return (
-              <div key={category} className="mb-32">
-                {/* Category Header */}
-                <AnimatedSection delay={categoryIndex * 150} className="mb-12">
-                  <div className="flex items-center gap-4 mb-8">
-                    <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center">
-                      <Icon className="w-7 h-7 text-secondary-container" />
-                    </div>
-                    <div>
-                      <span className="section-label block mb-1">{categoryProjects.length} Projets</span>
-                      <h3 className="text-3xl font-headline font-black text-primary">{category}</h3>
-                    </div>
-                  </div>
-                  <div className="w-12 h-1 bg-gradient-to-r from-secondary-container to-secondary rounded-full" />
-                </AnimatedSection>
-
-                {/* Projects Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {categoryProjects.map((project, projectIndex) => (
-                    <AnimatedSection key={project.id} delay={categoryIndex * 150 + projectIndex * 50}>
-                      <Link href={`/projects/${project.slug}`}>
-                        <div className="bg-white rounded-2xl overflow-hidden group cursor-pointer hover-lift h-full flex flex-col">
-                          {/* Image */}
-                          <div className="relative h-48 overflow-hidden bg-surface-container">
-                            <img
-                              src={project.image}
-                              alt={project.title}
-                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                          </div>
-
-                          {/* Content */}
-                          <div className="p-6 flex flex-col flex-grow">
-                            {/* Tags */}
-                            <div className="flex flex-wrap gap-2 mb-4">
-                              {project.tags.slice(0, 2).map((tag) => (
-                                <span
-                                  key={tag}
-                                  className="inline-block bg-secondary/10 text-secondary-container text-xs font-headline font-bold uppercase tracking-widest px-3 py-1 rounded-full"
-                                >
-                                  {tag}
-                                </span>
-                              ))}
-                            </div>
-
-                            {/* Title */}
-                            <h4 className="text-lg font-headline font-black text-primary mb-3 group-hover:text-secondary-container transition-colors line-clamp-2">
-                              {project.title}
-                            </h4>
-
-                            {/* Description */}
-                            <p className="text-on-surface-variant text-sm mb-4 line-clamp-2 flex-grow">{project.description}</p>
-
-                            {/* Project Info */}
-                            <div className="space-y-3 border-t border-outline-variant/20 pt-4 mb-4">
-                              {/* Client */}
-                              <div className="flex items-start gap-3">
-                                <User className="w-4 h-4 text-secondary-container mt-0.5 shrink-0" />
-                                <div className="flex-grow">
-                                  <div className="text-xs text-on-surface-variant uppercase font-headline font-bold">Client</div>
-                                  <div className="text-sm font-medium text-primary">{project.client}</div>
-                                </div>
-                              </div>
-
-                              {/* Location */}
-                              <div className="flex items-start gap-3">
-                                <MapPin className="w-4 h-4 text-secondary-container mt-0.5 shrink-0" />
-                                <div className="flex-grow">
-                                  <div className="text-xs text-on-surface-variant uppercase font-headline font-bold">Localisation</div>
-                                  <div className="text-sm font-medium text-primary">{project.location}</div>
-                                </div>
-                              </div>
-
-                              {/* Duration */}
-                              <div className="flex items-start gap-3">
-                                <Award className="w-4 h-4 text-secondary-container mt-0.5 shrink-0" />
-                                <div className="flex-grow">
-                                  <div className="text-xs text-on-surface-variant uppercase font-headline font-bold">Durée</div>
-                                  <div className="text-sm font-medium text-primary">{project.duration}</div>
-                                </div>
-                              </div>
-                            </div>
-
-                            {/* Highlights */}
-                            <div className="grid grid-cols-3 gap-2 mb-4">
-                              {project.highlights.map((h, i) => (
-                                <div key={i} className="bg-surface-container-highest rounded-lg p-3 text-center">
-                                  <div className="text-base font-headline font-bold text-secondary-container mb-1">{h.value}</div>
-                                  <div className="text-xs text-on-surface-variant font-medium">{h.label}</div>
-                                </div>
-                              ))}
-                            </div>
-
-                            {/* CTA */}
-                            <div className="flex items-center gap-2 text-secondary-container font-headline font-bold text-sm group-hover:gap-3 transition-all">
-                              Voir les détails <ArrowRight className="w-4 h-4" />
-                            </div>
-                          </div>
-                        </div>
-                      </Link>
-                    </AnimatedSection>
-                  ))}
-                </div>
-              </div>
-            )
-          })}
         </div>
       </section>
 
@@ -309,7 +185,7 @@ export default function ProjectsPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {[
-              { number: 50, label: 'Projets Réalisés', icon: '🏗️' },
+              { number: 10, label: 'Projets Réalisés', icon: '🏗️' },
               { number: 6, label: 'Années d\'Expertise', icon: '⏱️' },
               { number: 98, label: 'Satisfaction Client', suffix: '%', icon: '⭐' },
               { number: 150, label: 'Experts Mobilisés', suffix: '+', icon: '👥' },

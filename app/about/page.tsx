@@ -37,7 +37,7 @@ const milestones = [
   { year: '2022', title: 'Énergie Verte', description: 'Déploiement des premiers projets solaires industriels.' },
   { year: '2023', title: 'Fibre Optique', description: 'Contrats de déploiement fibre à grande échelle.' },
   { year: '2024', title: 'Certification ISO', description: 'Obtention des certifications de qualité internationales.' },
-  { year: '2026', title: 'Aujourd\'hui', description: '50+ projets livrés, 25+ experts, présence régionale.' },
+  { year: '2026', title: 'Aujourd\'hui', description: '10+ projets livrés, 25+ experts, présence régionale.' },
 ]
 
 export default function AboutPage() {
@@ -48,7 +48,7 @@ export default function AboutPage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&q=80"
+            src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1920&q=80"
             alt="À Propos"
             className="w-full h-full object-cover"
           />
@@ -81,7 +81,7 @@ export default function AboutPage() {
             <div className="lg:w-1/3 grid grid-cols-2 gap-4">
               {[
                 { value: 6, suffix: '+', label: 'Années' },
-                { value: 50, suffix: '+', label: 'Projets' },
+                { value: 10, suffix: '+', label: 'Projets' },
                 { value: 25, suffix: '+', label: 'Experts' },
                 { value: 10, suffix: '+', label: 'Pays' },
               ].map((stat, i) => (

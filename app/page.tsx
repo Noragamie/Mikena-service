@@ -12,7 +12,7 @@ const displayedServices = getFirstSixServices()
 
 const stats = [
   { value: 6, suffix: '+', label: 'Années d\'Expérience' },
-  { value: 50, suffix: '+', label: 'Projets Livrés' },
+  { value: 10, suffix: '+', label: 'Projets Livrés' },
   { value: 25, suffix: '+', label: 'Experts Certifiés' },
   { value: 99, suffix: '.9%', label: 'Fiabilité Opérationnelle' },
 ]
@@ -162,7 +162,7 @@ export default function HomePage() {
                       <div className="grid grid-cols-2 gap-6">
                         <div className="bg-white/5 rounded-xl p-4">
                           <div className="text-3xl font-headline font-black text-secondary-container mb-1">
-                            <Counter target={50} suffix="+" />
+                            <Counter target={10} suffix="+" />
                           </div>
                           <div className="text-white/50 text-xs uppercase tracking-wider">Projets</div>
                         </div>
