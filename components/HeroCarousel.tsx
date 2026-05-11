@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react'
 
@@ -11,9 +10,9 @@ const slides = [
     title: 'Ingénierie Informatique',
     subtitle: 'Solutions IT de Classe Mondiale',
     description: 'Infrastructure cloud, développement logiciel et intégration système pour votre entreprise.',
-    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80',
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1920&q=80',
     cta: 'Découvrir',
-    link: '/services',
+    link: '/services/ingenierie-informatique',
   },
   {
     id: 2,
@@ -22,25 +21,97 @@ const slides = [
     description: 'Conception et installation de systèmes solaires pour un avenir plus vert.',
     image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1920&q=80',
     cta: 'Nos Solutions',
-    link: '/services',
+    link: '/services/ingenierie-solaire-electrique',
   },
   {
     id: 3,
     title: 'Fibre Optique',
     subtitle: 'Connectivité Haute Performance',
     description: 'Déploiement de réseaux fibre optique pour une connectivité maximale.',
-    image: 'https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?w=1920&q=80',
+    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=1920&q=80',
     cta: 'En Savoir Plus',
-    link: '/services',
+    link: '/services/fibre-optique',
   },
   {
     id: 4,
-    title: '50+ Projets Réalisés',
-    subtitle: '6 Ans d\'Excellence',
-    description: 'Faites confiance à notre expertise pour vos projets d\'ingénierie.',
-    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1920&q=80',
-    cta: 'Voir Nos Projets',
-    link: '/projects',
+    title: 'Formations Techniques',
+    subtitle: 'Développez Vos Compétences',
+    description: 'Programmes de certification technique et ateliers de sécurité pour ingénieurs.',
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&q=80',
+    cta: 'Nos Formations',
+    link: '/services/formations-techniques',
+  },
+  {
+    id: 5,
+    title: 'Gestion de l\'Environnement',
+    subtitle: 'Solutions Durables',
+    description: 'Conformité réglementaire et stratégies d\'utilisation durable des terres.',
+    image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1920&q=80',
+    cta: 'Découvrir',
+    link: '/services/gestion-environnement',
+  },
+  {
+    id: 6,
+    title: 'Études & Audits SI',
+    subtitle: 'Sécurité Informatique',
+    description: 'Évaluations de vulnérabilité et contrôles d\'intégrité pour vos systèmes.',
+    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1920&q=80',
+    cta: 'Nos Audits',
+    link: '/services/etudes-audits-si',
+  },
+  {
+    id: 7,
+    title: 'Vente de Matériels',
+    subtitle: 'Équipements Professionnels',
+    description: 'Fourniture d\'outils d\'ingénierie IT, matériels et composants solaires spécialisés.',
+    image: 'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=1920&q=80',
+    cta: 'Notre Catalogue',
+    link: '/services/vente-materiels',
+  },
+  {
+    id: 8,
+    title: 'Réseaux',
+    subtitle: 'Architecture Réseau d\'Entreprise',
+    description: 'Architecture LAN/WAN d\'entreprise, déploiements mesh et infrastructure sans fil.',
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1920&q=80',
+    cta: 'Nos Solutions',
+    link: '/services/reseaux',
+  },
+  {
+    id: 9,
+    title: 'Maintenance',
+    subtitle: 'Support Technique 24/7',
+    description: 'Surveillance proactive et support technique rapide pour actifs mission-critiques.',
+    image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1920&q=80',
+    cta: 'En Savoir Plus',
+    link: '/services/maintenance',
+  },
+  {
+    id: 10,
+    title: 'Évènementiels',
+    subtitle: 'Support Technique pour Événements',
+    description: 'Gestion technique pour symposiums industriels et sommets d\'ingénierie d\'entreprise.',
+    image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1920&q=80',
+    cta: 'Nos Services',
+    link: '/services/evenementiels',
+  },
+  {
+    id: 11,
+    title: 'Communication',
+    subtitle: 'Solutions de Communication Unifiées',
+    description: 'Conception et déploiement de canaux de communication interne unifiés.',
+    image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1920&q=80',
+    cta: 'Découvrir',
+    link: '/services/communication',
+  },
+  {
+    id: 12,
+    title: 'Domaine Agricole',
+    subtitle: 'Agriculture Intelligente',
+    description: 'Agriculture intelligente, irrigation automatisée et solutions d\'ingénierie agricole.',
+    image: 'https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=1920&q=80',
+    cta: 'Nos Solutions',
+    link: '/services/domaine-agricole',
   },
 ]
 
@@ -75,7 +146,6 @@ export default function HeroCarousel() {
 
   return (
     <div className="relative h-[70vh] md:h-[80vh] w-full overflow-hidden">
-      {/* Slides */}
       {slides.map((slide, index) => (
         <div
           key={slide.id}
@@ -83,18 +153,15 @@ export default function HeroCarousel() {
             index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
           }`}
         >
-          {/* Background Image */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent z-10" />
           <div className="absolute inset-0 bg-black/10 z-10" />
           
-          {/* Real Image from Unsplash */}
           <img
             src={slide.image}
             alt={slide.title}
             className="absolute inset-0 w-full h-full object-cover"
           />
 
-          {/* Content */}
           <div className="relative z-20 h-full flex items-center">
             <div className="max-w-7xl mx-auto px-6 md:px-12 w-full">
               <div className="max-w-2xl">
@@ -128,7 +195,6 @@ export default function HeroCarousel() {
         </div>
       ))}
 
-      {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
         className="absolute left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300"
@@ -144,7 +210,6 @@ export default function HeroCarousel() {
         <ChevronRight className="w-6 h-6" />
       </button>
 
-      {/* Dots Navigation */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-3">
         {slides.map((_, index) => (
           <button
@@ -160,7 +225,6 @@ export default function HeroCarousel() {
         ))}
       </div>
 
-      {/* Slide Counter */}
       <div className="absolute bottom-8 right-8 z-30 text-white/60 font-headline font-bold text-sm">
         {String(currentSlide + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
       </div>

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     default: 'Mikena Services — Ingénierie & IT de Classe Mondiale au Bénin',
     template: '%s | Mikena Services',
   },
-  description: 'Mikena Services offre des solutions d\'ingénierie de classe mondiale au Bénin et en Afrique de l\'Ouest : informatique, solaire, fibre optique, formation, environnement et plus encore. 6+ ans d\'expérience, 50+ projets réalisés.',
+  description: 'Mikena Services offre des solutions d\'ingénierie de classe mondiale au Bénin et en Afrique de l\'Ouest : informatique, solaire, fibre optique, formation, environnement et plus encore. 6+ ans d\'expérience, 10+ projets réalisés.',
   keywords: [
     'ingénierie Bénin',
     'fibre optique Bénin',

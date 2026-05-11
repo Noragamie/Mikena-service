@@ -1,53 +1,32 @@
 import AnimatedSection from '@/components/AnimatedSection'
 import Counter from '@/components/Counter'
 import Link from 'next/link'
-import { Sun, Radio, Building2, ArrowRight, CheckCircle2, Tag } from 'lucide-react'
+import {
+  Sun,
+  Radio,
+  Cpu,
+  Package,
+  ArrowRight,
+  CheckCircle2,
+  MapPin,
+  User,
+  Award,
+  TrendingUp,
+  ArrowUpRight,
+} from 'lucide-react'
+import { projects, getCategories, getProjectsByCategory, getFeaturedProjects } from '@/lib/projects'
 
 export const metadata = {
-  title: 'Projets — Mikena Services',
-  description: 'Découvrez notre portfolio de projets d\'ingénierie : solaire, fibre optique, infrastructure industrielle.',
+  title: 'Nos Projets — Mikena Services',
+  description: 'Découvrez notre portfolio complet de projets réalisés : énergie solaire, fibre optique, infrastructure IT et équipements.',
 }
 
-const projects = [
-  {
-    category: 'Énergie Solaire',
-    title: 'Installation Panneaux Solaires - Entreprise Locale',
-    description: 'Installation de 15kW de panneaux solaires pour une PME à Cotonou, réduction de 60% de la facture électrique.',
-    tag: 'SOLAIRE',
-    tagColor: 'bg-secondary text-white',
-    icon: Sun,
-    stat: '15kW',
-    statLabel: 'Capacité Installée',
-    featured: true,
-  },
-  {
-    category: 'Informatique',
-    title: 'Réseau Local & Serveur - Cabinet Médical',
-    description: 'Mise en place d\'un réseau informatique sécurisé avec serveur de données pour un cabinet médical.',
-    tag: 'IT',
-    tagColor: 'bg-primary text-white',
-    icon: Building2,
-    featured: true,
-  },
-  {
-    category: 'Fibre Optique',
-    title: 'Câblage Fibre - Immeuble de Bureaux',
-    description: 'Installation de câblage fibre optique pour connecter 3 étages d\'un immeuble commercial.',
-    tag: 'FIBRE',
-    tagColor: 'bg-surface-container text-on-surface',
-    icon: Radio,
-    featured: true,
-  },
-  {
-    category: 'Vente Matériel',
-    title: 'Fourniture Équipements Réseau',
-    description: 'Vente et installation de switches, routeurs et équipements réseau pour plusieurs clients.',
-    tag: 'VENTE',
-    tagColor: 'bg-secondary text-white',
-    icon: Building2,
-    featured: true,
-  },
-]
+const categoryIcons = {
+  'Énergie Solaire': Sun,
+  'Fibre Optique': Radio,
+  'Informatique': Cpu,
+  'Vente & Installation': Package,
+}
 
 const processSteps = [
   {
@@ -71,14 +50,16 @@ const processSteps = [
 ]
 
 export default function ProjectsPage() {
+  const categories = getCategories()
+  const featuredProjects = getFeaturedProjects()
+
   return (
     <>
-      {/* Hero with Image */}
+      {/* Hero Section */}
       <section className="relative bg-gradient-hero pt-40 pb-28 overflow-hidden">
-        {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80"
+            src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1920&q=80"
             alt="Projets"
             className="w-full h-full object-cover"
           />
@@ -93,16 +74,16 @@ export default function ProjectsPage() {
           </AnimatedSection>
           <AnimatedSection delay={100}>
             <h1 className="text-5xl md:text-7xl font-headline font-black text-white leading-[1.05] tracking-tight mb-6">
-              Précision Ingénierique<br />
+              6 Ans d&apos;Expertise<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary-container to-secondary italic">
-                à l&apos;Échelle
+                10+ Projets Réalisés
               </span>
             </h1>
           </AnimatedSection>
           <AnimatedSection delay={200}>
             <p className="text-white/70 text-lg max-w-2xl leading-relaxed mb-10">
-              Installations solaires, réseaux informatiques, câblage fibre optique et vente de matériel. 
-              Des solutions concrètes pour les entreprises et institutions au Bénin.
+              De l&apos;énergie solaire à la fibre optique, découvrez les projets que nous avons menés avec succès pour 
+              nos clients au Bénin et dans la région.
             </p>
           </AnimatedSection>
           <AnimatedSection delay={300}>
@@ -124,107 +105,109 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* Projects Coming Soon */}
+      {/* Featured Projects */}
       <section className="py-28 bg-surface">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="flex flex-col lg:flex-row justify-between items-start gap-8 mb-16">
-            <div>
-              <AnimatedSection direction="left">
-                <span className="section-label mb-4 block">Domaines de Projets</span>
-                <h2 className="text-4xl font-headline font-black text-primary">
-                  Exemples de Nos Réalisations
-                </h2>
-              </AnimatedSection>
-            </div>
-            <AnimatedSection direction="right">
-              <p className="text-on-surface-variant max-w-sm leading-relaxed">
-                Découvrez quelques exemples de nos réalisations récentes dans différents domaines d&apos;activité.
-              </p>
+          <div className="mb-16">
+            <AnimatedSection direction="left">
+              <span className="section-label mb-4 block">Nos Réalisations</span>
+              <h2 className="text-4xl font-headline font-black text-primary">
+                Projets Réalisés
+              </h2>
             </AnimatedSection>
           </div>
 
-          {/* Featured projects grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            {/* Large featured project */}
-            <AnimatedSection className="md:row-span-1">
-              <div className="relative bg-gradient-to-br from-primary to-primary-container rounded-2xl overflow-hidden h-72 group cursor-pointer hover-lift">
-                <div className="absolute inset-0 blueprint-lines opacity-10" />
-                <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                  <Sun className="w-48 h-48 text-secondary-container" />
-                </div>
-                <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                  <span className="inline-block bg-secondary text-white text-xs font-headline font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3 w-fit">
-                    Énergie Solaire
-                  </span>
-                  <h3 className="text-2xl font-headline font-black text-white mb-2">
-                    Installation Panneaux Solaires - Entreprise Locale
-                  </h3>
-                  <p className="text-white/60 text-sm">
-                    Installation de 15kW pour une PME à Cotonou, réduction de 60% de la facture électrique.
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
-
-            {/* Right column */}
-            <div className="flex flex-col gap-6">
-              <AnimatedSection delay={100}>
-                <div className="bg-primary rounded-xl p-8 group hover-lift cursor-pointer h-32 flex items-center gap-6">
-                  <Building2 className="w-10 h-10 text-secondary-container shrink-0" />
-                  <div>
-                    <h3 className="font-headline font-bold text-white text-lg mb-1">Réseau Local - Cabinet Médical</h3>
-                    <p className="text-white/60 text-sm">Réseau informatique sécurisé avec serveur de données.</p>
+          {/* All projects - stylized cards grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project, index) => {
+              const IconComponent = project.icon
+              return (
+                <AnimatedSection key={project.id} delay={index * 50}>
+                  <div className="group relative bg-gradient-to-br from-white to-surface-container-low rounded-3xl overflow-hidden border border-outline-variant/20 hover:border-secondary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-secondary/10 hover:-translate-y-2 cursor-pointer h-full">
+                    {/* Animated gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-secondary/0 via-secondary/0 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    
+                    {/* Corner accent */}
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-secondary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-16 -translate-y-16 group-hover:translate-x-0 group-hover:translate-y-0" />
+                    
+                    {/* Content */}
+                    <div className="relative z-10 p-8 h-full flex flex-col">
+                      {/* Icon with animated background */}
+                      <div className="relative mb-6">
+                        <div className="absolute inset-0 bg-secondary/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-secondary/10 to-secondary/5 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 border border-secondary/10 group-hover:border-secondary/30">
+                          <IconComponent className="w-8 h-8 text-secondary group-hover:scale-110 transition-transform duration-500" />
+                        </div>
+                      </div>
+                      
+                      {/* Title */}
+                      <h3 className="text-lg font-headline font-bold text-primary group-hover:text-secondary transition-colors duration-300 leading-tight mb-4 flex-grow">
+                        {project.title}
+                      </h3>
+                      
+                      {/* Category badge */}
+                      <div className="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/10 group-hover:border-secondary/20 transition-colors duration-300">
+                        <span className="text-xs font-headline font-bold text-on-surface-variant/60 uppercase tracking-wider">
+                          {project.category}
+                        </span>
+                        <div className="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center group-hover:bg-secondary group-hover:scale-110 transition-all duration-300">
+                          <ArrowUpRight className="w-4 h-4 text-secondary group-hover:text-white transition-colors duration-300" />
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Animated border effect */}
+                    <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                      <div className="absolute inset-0 rounded-3xl border-2 border-secondary/20 animate-pulse" />
+                    </div>
                   </div>
-                </div>
-              </AnimatedSection>
-              <AnimatedSection delay={200}>
-                <div className="relative bg-surface-container-low rounded-xl overflow-hidden h-40 group hover-lift cursor-pointer">
-                  <div className="absolute inset-0 flex items-center justify-center opacity-10">
-                    <Radio className="w-32 h-32 text-primary" />
-                  </div>
-                  <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                    <h3 className="font-headline font-bold text-primary text-lg">Câblage Fibre - Immeuble</h3>
-                    <p className="text-on-surface-variant text-sm">Installation fibre optique pour 3 étages de bureaux.</p>
-                  </div>
-                </div>
-              </AnimatedSection>
-            </div>
-          </div>
-
-          {/* Bottom row */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <AnimatedSection delay={100}>
-              <div className="relative bg-surface-container-low rounded-xl overflow-hidden h-48 group hover-lift cursor-pointer">
-                <div className="absolute inset-0 flex items-center justify-center opacity-10">
-                  <Radio className="w-32 h-32 text-primary" />
-                </div>
-                <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                  <h3 className="font-headline font-bold text-primary text-xl">Câblage Fibre - Immeuble</h3>
-                </div>
-              </div>
-            </AnimatedSection>
-            <AnimatedSection delay={200}>
-              <div className="relative rounded-xl overflow-hidden h-48 group hover-lift cursor-pointer">
-                <div className="absolute inset-0 bg-gradient-to-br from-surface-container to-surface-container-high" />
-                <div className="absolute inset-0 flex items-center justify-center opacity-10">
-                  <Building2 className="w-32 h-32 text-primary" />
-                </div>
-                <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                  <span className="inline-block bg-secondary text-white text-xs font-headline font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3 w-fit">
-                    Vente Matériel
-                  </span>
-                  <h3 className="font-headline font-bold text-primary text-xl">Fourniture Équipements Réseau</h3>
-                </div>
-              </div>
-            </AnimatedSection>
+                </AnimatedSection>
+              )
+            })}
           </div>
         </div>
       </section>
 
-      {/* Process */}
-      <section className="py-28 bg-surface-container-low">
+      {/* Stats Section */}
+      <section className="py-28 bg-gradient-to-br from-primary to-primary-container relative overflow-hidden">
+        <div className="absolute inset-0 blueprint-lines opacity-5" />
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
+          <div className="mb-16 text-center">
+            <AnimatedSection>
+              <h2 className="text-4xl md:text-5xl font-headline font-black text-white mb-4">
+                Notre Impact en Chiffres
+              </h2>
+              <p className="text-white/70 max-w-2xl mx-auto">
+                Découvrez l&apos;impact réel de nos projets sur nos clients et leurs entreprises.
+              </p>
+            </AnimatedSection>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {[
+              { number: 10, label: 'Projets Réalisés', icon: '🏗️' },
+              { number: 6, label: 'Années d\'Expertise', icon: '⏱️' },
+              { number: 98, label: 'Satisfaction Client', suffix: '%', icon: '⭐' },
+              { number: 150, label: 'Experts Mobilisés', suffix: '+', icon: '👥' },
+            ].map((stat, i) => (
+              <AnimatedSection key={i} delay={i * 100} direction="up">
+                <div className="text-center">
+                  <div className="text-4xl mb-4">{stat.icon}</div>
+                  <div className="text-5xl font-headline font-black text-white mb-2">
+                    <Counter target={stat.number} suffix={stat.suffix || ''} />
+                  </div>
+                  <div className="text-white/70 font-headline font-bold">{stat.label}</div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section className="py-28 bg-surface">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="flex flex-col lg:flex-row gap-20 items-center">
+          <div className="flex flex-col lg:flex-row gap-20 items-center mb-16">
             {/* Left visual */}
             <div className="lg:w-2/5">
               <AnimatedSection direction="left">
@@ -309,3 +292,4 @@ export default function ProjectsPage() {
     </>
   )
 }
+
